@@ -7,19 +7,14 @@ const ANIMATION_DURATION = 4000;
 const animation = () => {
   ANGLE -= 1; // Incremento do ângulo
   document.querySelectorAll(".spiral *").forEach((el, i) => {
-    
     const translateY = Math.sin(ANGLE * (Math.PI / 120)) * 100;
     const scale = Math.cos(ANGLE * (Math.PI / 120)) * 0.5 + 0.5;
-    
-    
     const offset = parseInt(el.dataset.offset);
     const delay = i * (ANIMATION_DURATION / 16) - offset;
-
     setTimeout(() => {
       el.style.transform = `translateY(${translateY}px) scale(${scale})`;
     }, delay);
   });
-
   requestAnimationFrame(animation);
 };
 
@@ -38,7 +33,6 @@ const characters = words.split("").forEach((char, i) => {
     .querySelector("#spiral2")
     .append(createElement((isFirefox ? 1 : -1) * (ANIMATION_DURATION / 2)));
 });
-
 
 // @property CSS doesn't work in Firefox, so it must be animated using JavaScript.
 if(isFirefox){
